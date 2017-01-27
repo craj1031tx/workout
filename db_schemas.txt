@@ -1,0 +1,30 @@
+var UserSchema = new mongoose.Schema({
+	fn: {type:String, required:true},
+	un: {type:String, required:true},
+	pin: {type:Number, required:true},
+	goals: [{type: Schema.Types.ObjectId, ref: "Goal"}]
+}, {timestamps:true});
+
+
+
+var GoalSchema = new mongoose.Schema({
+	_user: {type: Schema.Types.ObjectId, ref: "User"},
+	_exercise: {type: Schema.Types.ObjectId, ref: "Exercise"},
+	goal: {type: Number, required:true},	
+}, {timestamps:true;});
+
+
+
+var BodySchema = new mongoose.Schema({
+	name: {type:String, required:true},
+	rank: {type:Number, required:true},
+	exercises: [{type: Schema.Types.ObjectId, ref: "Exercise"}]
+}, {timestamps:true});
+
+
+
+var ExerciseSchema = new mongoose.Schema({
+	_body: {type: Schema.Types.ObjectId, ref:"Body"}
+	exercise: {type:String, required:true},
+	description: {type:String, required:true},
+}, {timestamp:true});

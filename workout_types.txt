@@ -1,0 +1,11 @@
+body zones:
+rank	name
+1	Explosive
+2 	Knee
+3 	Hip
+4 	Horizontal Push
+5 	Horizontal Pull
+6 	Vertical Push
+7 	Vertical Pull
+8 	Rotational
+9 	Bridge

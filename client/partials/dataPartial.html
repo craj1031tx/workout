@@ -1,0 +1,32 @@
+<h1>This is the data adding portal...</h1>
+Add a new body type:
+<form>
+	Name:<input type="text" ng-model="bodyName"><br>
+	Rank:<input type="text" ng-model="bodyRank"><br>
+	<button ng-click="addBody();">Submit body.</button>
+</form>
+LIST OF BODY TYPES AND RANK:
+<ul>
+	<li ng-repeat="type in bodyList">{{type.name}} and {{type.rank}}</li>
+</ul>
+Add a new exercise type:
+<form>
+	Exercise: <input type="text" ng-model="exerciseExercise"><br>
+	Description: <input type="text" ng-model="exerciseDescription"><br>
+	Body Rank: <select ng-model="exerciseBodyRank">
+		<option value="1" selected>1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+	</select><br>
+	Unilateral? <select ng-model="exerciseUni">
+		<option value="0" selected>False</option>
+		<option value="1">True</option>
+	</select><br>
+	<button ng-click="addExercise();">Submit exercise.</button>
+</form>

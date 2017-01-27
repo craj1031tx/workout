@@ -1,0 +1,30 @@
+<!-- login partial -->
+<div>
+	<h1>Workout App.</h1>
+	<a href="/#/blank">GO TO BLANK</a>
+	<h3>Please select from the list of users below. If you do not see your name, you can sign up below the list.</h3>
+
+	Select your username:<br>
+	<select name="multipleSelect" id="multipleSelect" ng-model="selectedUser" size="10">
+		<option>Select a user below</option>
+		<option ng-repeat="user in userList" value="{{user._id}}">{{user.fn}}</option>		
+	</select>
+	And enter your pin number:
+	<input type="number" ng-model="userPin">
+	<button ng-click="loginUser()">Login.</button>
+
+
+	<button ng-click="testFunction()">click</button>
+	<h2>You selected: {{selectedUser}} and pin is {{userPin}}</h2>
+	<div><h2 ng-repeat="error in listOfErrors" style="color:red;">{{error}}</h2></div>
+	<h3>Sign up here.</h3>
+	<form>
+		First Name: <input type="text" ng-model="newUserInfo.fn"><br>
+		Username: <input type="text" ng-model="newUserInfo.un"><br>
+		PIN: <input type="number" ng-model="newUserInfo.pin"><br>
+		<button ng-click="register();">Sign up.</button>
+	</form>
+
+	<hr>
+
+</div>
