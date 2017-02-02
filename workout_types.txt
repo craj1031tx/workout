@@ -9,3 +9,36 @@ rank	name
 7 	Vertical Pull
 8 	Rotational
 9 	Bridge
+
+
+explosive
+leg/hip
+hpull/hpush
+vpull/vpush
+rot/core
+
+get date: moment().date();
+get day (number) of the week: moment().day()
+
+odd (body type) = [0,1,4,6,7,8]
+even (body type)= [0,2,3,5,7,8]
+odd day (uni or bi) = [false, true, false, true, false]
+even day (uni or bi) = [false, true, false, true, false]
+
+
+
+explosive
+leg
+hip
+hpush
+hpull
+vpush
+vpull
+rot
+core
+
+always = [0,1,2,3,4,5,6,7,8]
+odd day (uni or buy) = [false, true, false, true, false, true, false, false, false]
+even day (uni or buy) = [false, false, true, false, true, false, true, false, false]
+
+

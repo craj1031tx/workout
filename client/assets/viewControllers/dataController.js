@@ -1,16 +1,16 @@
 //DATA CLIENT CONTROLLER - FOR ADDING EXERCISE DATA
 
-workoutApp.controller("dataController", ["$scope", "appFactory", "$location", "$routeParams", "$cookies", function($scope, appFactory, $location, $routeParams, $cookies){
+workoutApp.controller("dataController", ["$scope", "userFactory", "$location", "$routeParams", "$cookies", function($scope, userFactory, $location, $routeParams, $cookies){
 	console.log("dataController loaded...");
 
 	$scope.addBody = function(){
-		appFactory.addBody($scope.bodyName, $scope.bodyRank, function(returnedData){
+		userFactory.addBody($scope.bodyName, $scope.bodyRank, function(returnedData){
 			console.log(returnedData);
 		})
 	}
 
 	var getBody = function(){
-		appFactory.getBody(function(returnedData){
+		userFactory.getBody(function(returnedData){
 			$scope.bodyList = returnedData.data;
 		});
 	};
@@ -22,7 +22,7 @@ workoutApp.controller("dataController", ["$scope", "appFactory", "$location", "$
 		if($scope.exerciseUni == '1'){
 			isUni = true;
 		};
-		appFactory.addExercise($scope.exerciseExercise, $scope.exerciseDescription, $scope.exerciseBodyRank, isUni, function(returnedData){
+		userFactory.addExercise($scope.exerciseExercise, $scope.exerciseDescription, $scope.exerciseBodyRank, isUni, function(returnedData){
 			console.log(returnedData);
 		});
 		$scope.exerciseExercise = '';
@@ -30,7 +30,7 @@ workoutApp.controller("dataController", ["$scope", "appFactory", "$location", "$
 	};
 
 	var getFull = function(){
-		appFactory.getFull(function(fullList){
+		userFactory.getFull(function(fullList){
 			$scope.fullList = fullList;
 			console.log(fullList);
 		});

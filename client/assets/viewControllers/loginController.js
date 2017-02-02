@@ -1,10 +1,10 @@
 //BLANK CLIENT VIEWCONTROLLER
 
-workoutApp.controller("loginController", ["$scope", "appFactory", "$location", "$routeParams", "$cookies", function($scope, appFactory, $location, $routeParams, $cookies){
+workoutApp.controller("loginController", ["$scope", "userFactory", "$location", "$routeParams", "$cookies", function($scope, userFactory, $location, $routeParams, $cookies){
 	console.log("loginController loaded...");
 
 	$scope.register = function(){
-		appFactory.registerUser($scope.newUserInfo, function(returnedData){
+		userFactory.registerUser($scope.newUserInfo, function(returnedData){
 			if(returnedData.data.errors){
 				$scope.listOfErrors = [];
 				for(var key in returnedData.data.errors){
@@ -21,7 +21,7 @@ workoutApp.controller("loginController", ["$scope", "appFactory", "$location", "
 	};
 
 	var getUsers = function(){
-		appFactory.getUsers(function(returnedData){
+		userFactory.getUsers(function(returnedData){
 			$scope.userList = returnedData
 		});
 	};
@@ -32,7 +32,7 @@ workoutApp.controller("loginController", ["$scope", "appFactory", "$location", "
 	}
 
 	$scope.loginUser = function(){
-		appFactory.loginUser($scope.selectedUser, $scope.userPin, function(returnedData){
+		userFactory.loginUser($scope.selectedUser, $scope.userPin, function(returnedData){
 			console.log(returnedData)
 			if(returnedData.data.errors){
 				console.log(returnedData.data.errors);
