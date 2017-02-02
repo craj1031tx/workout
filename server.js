@@ -14,8 +14,7 @@ app.use(bodyParser.json());
 require("./server/configs/mongoose.js")
 require("./server/controllers/dataSSController.js");
 require("./server/controllers/userSSController.js");
-require("./server/controllers/goalSSController.js");
-require("./server/controllers/bodySSController.js");
+//require("./server/controllers/goalSSController.js");
 require("./server/controllers/exerciseSSController.js");
 require("./server/configs/routes.js")(app);
 

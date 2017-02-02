@@ -13,7 +13,8 @@ var UserSchema = new mongoose.Schema({
 			type:String, required:true,
 			minlength: [4,"Pin must be 4 characters long"],
 			maxlength: [4,"Pin must be 4 characters long"]
-			 }
+			 },
+	goals: String
 }, {timestamps:true});
 
 var User = mongoose.model("User", UserSchema);

@@ -1,18 +1,17 @@
 //DASHBOARD CONTROLLER 
 
-workoutApp.controller("dashboardController", ["$scope", "appFactory", "$location", "$routeParams", "$cookies", function($scope, appFactory, $location, $routeParams, $cookies){
-	console.log("dashboardController loaded...");
+workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutFactory", "$location", "$routeParams", "$cookies", function($scope, userFactory, workoutFactory, $location, $routeParams, $cookies){
 
 	var setCurrentUser = function(){
-		appFactory.getCurrentUser(function(user){
-			console.log(user.data);
+		userFactory.getCurrentUser(function(user){
 			$scope.theUser = user.data;
-			console.log('the user is', $scope.theUser);
 		});
 	};
 	setCurrentUser();
 
-	$scope.newWorkout = function(){
-		appFactory.newWorkout()
+	$scope.newWorkout = function(length){
+		workoutFactory.newWorkout(length, $scope.theUser._id, function(){
+			//some callback...
+		})
 	};
 }]);
