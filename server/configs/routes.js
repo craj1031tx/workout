@@ -22,6 +22,7 @@ module.exports = function(app){
 	
 	//Workout routes
 	app.post("/workouts/new_workout", exerciseCtrl.newWorkout);
+	app.post("/workouts/new_individual_exercise", exerciseCtrl.newIndividalExercise);
 
 
 	//Populate route
