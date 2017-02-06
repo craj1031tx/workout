@@ -75,6 +75,20 @@ function dataController(){
 			{
 			active:true,
 			bodyRank:3,
+			name:"test111",
+			uni: false,
+			description:"HPush Bench Press"},
+
+			{
+			active:true,
+			bodyRank:3,
+			name:"test222",
+			uni: false,
+			description:"HPush Bench Press"},
+
+			{
+			active:true,
+			bodyRank:3,
 			name:"Dumbbell Bench Press",
 			uni: true,
 			description:"HPush Dumbbell Bench Press"},

@@ -58,7 +58,7 @@ function exerciseController(){
 					todaysWorkout.push(randomExercisePerType);
 				}
 				//return object and finishing promise.
-				console.log("promise finished............", todaysWorkout);
+				console.log("promise finished............", todaysWorkout); //can delete
 				res.json(todaysWorkout);
 				//end of promise for short length workout.
 			});
@@ -83,11 +83,25 @@ function exerciseController(){
 					todaysWorkout.push(randomExercisePerType);
 				}
 				//return object and finishing promise.
-				console.log("promise finished............", todaysWorkout);
+				console.log("promise finished............", todaysWorkout); //can delete 
 				res.json(todaysWorkout);
 				//end of promise for long length workout.
 			});
 		};
+	};
+
+	this.newIndividalExercise = function(req,res){
+		//original exercise object is passed in. new exercise is found using the original's bodyRank number and unilateral boolean via the aggregation pipeline. $sample is then used to select one at random from the sample set of exercises that match the aggregation. 
+		Exercise.aggregate([{$match:{$and:[{bodyRank: req.body.bodyRank},{uni: req.body.uni}, {active:true}]}},{$sample:{size:1}}], function(err, result){
+			if(err){
+				console.log(err);
+			}
+			else{
+				//new found single exercise object is passed back to client. 
+				console.log("newIndExercise seyz.....>>>>", result);  //can delete
+				res.json(result);
+			}
+		})
 	}
 };
 
