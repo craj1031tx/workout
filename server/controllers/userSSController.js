@@ -58,42 +58,66 @@ function userController(){
 			};
 		});
 	};
+	//need to use mark modified to actually save data! because we're using mixed object types. problem with mongoose...
+	this.setGoal = function(req,res){
+		User.findOne({_id:req.params.uId}, function(err, returnedUser){
+			if(err){
+				console.log(err)
+			}
+			else{
+				returnedUser.goals[req.params.eId] = Number(req.params.newGoal);
+				returnedUser.markModified('goals');
+				returnedUser.save(function(err2, result){
+					if(err2){
+						console.log(err2)
+					}
+					else{
+						res.json(result);
+					};
+				});
+			};
+		});
+	};
+
+	this.modifyGoal = function(req,res){
+		User.findOne({_id:req.body.uId}, function(err, returnedUser){
+			if(err){
+				console.log(err)
+			}
+			else{
+				console.log("found user", returnedUser); //can delete
+				if(returnedUser.goals.hasOwnProperty(req.body.eId)){
+					console.log("this user has a record for that exercise...!!!!!!!!!!!!!");
+					returnedUser.goals[req.body.eId] += req.body.amount;
+					returnedUser.markModified('goals');
+					returnedUser.save(function(err2, result){
+						if(err2){
+							console.log(err2)
+						}
+						else{
+							res.json(result);
+						};
+					});
+				}
+				else{
+					returnedUser.goals[req.body.eId] = 0;
+					returnedUser.markModified('goals');
+					returnedUser.save(function(err2, result){
+						if(err2){
+							console.log(err2)
+						}
+						else{
+							res.json(result);
+						};
+					});
+				};
+			};
+		});
+	};
 
 
 
 
-	// this.register = function(req,res){
-	// 	console.log("userSSController received:", req.body);
-	// 	if(req.body.password!=req.body.plaintext){
-	// 		returnObject = {data:{errors:{message:"Password do not match."}}}
-	// 		res.json(returnObject);
-	// 	}
-	// 	var aNewUser = new User({name: req.body.username, email: req.body.email, password: req.body.password, plaintext: req.body.plaintext});
-	// 	aNewUser.save(function(err2, returnedData){
-	// 		if(err2){			
-	// 			res.json(err2);
-	// 		}
-	// 		else{
-	// 			res.json(returnedData);
-	// 			console.log("userSSController save successful!");
-	// 		};
-	// 	});
-	// };
-	// this.login = function(req,res){
-	// 	User.findOne({email:req.body.email}, function(err, result){
-	// 		if(err || !result){
-	// 			res.json({errors:{message:"Login error (debug: email not found)"}});
-	// 		}
-	// 		else{
-	// 			if(bcrypt.compareSync(req.body.password, result.password)){
-	// 				res.json(result)
-	// 			}
-	// 			else{
-	// 				res.json({data:{errors:{message:"Login error (debug: password incorrect)"}}})
-	// 			};
-	// 		};
-	// 	})
-	// }
 };
 
 module.exports = new userController;

@@ -24,4 +24,6 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 			$cookies.putObject("todaysWorkout", $scope.todaysWorkout);
 		});
 	};
+
+
 }]);

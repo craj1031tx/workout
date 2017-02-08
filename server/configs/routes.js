@@ -13,6 +13,9 @@ module.exports = function(app){
 	app.post("/login_user", userCtrl.login);
 	app.get("/get_users", userCtrl.getUsers);
 	app.get("/get_user/:id", userCtrl.getAUser);
+	app.get("/set_goal/:uId/:eId/:newGoal", userCtrl.setGoal);
+	app.post("/modify_goal", userCtrl.modifyGoal);
+
 	
 	//Data routes
 	app.post("/add_body", dataCtrl.addBody);
@@ -23,6 +26,10 @@ module.exports = function(app){
 	//Workout routes
 	app.post("/workouts/new_workout", exerciseCtrl.newWorkout);
 	app.post("/workouts/new_individual_exercise", exerciseCtrl.newIndividalExercise);
+
+	app.get("/workouts/exercises/:id", exerciseCtrl.singleExercise);
+
+	//Goals routes
 
 
 	//Populate route

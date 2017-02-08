@@ -16,7 +16,7 @@ function exerciseController(){
 		var shortOdd = [0,1,4,6,7,8]
 		var shortEven = [0,2,3,5,7,8]
 		var shortOddDayLateral = [false, true, false, true, false, false]
-		var shortEvenDayLateral = [false, false, true, false, true, false]
+		var shortEvenDayLateral = [false, false, true, false, false, false]
 		var longRank = [0,1,2,3,4,5,6,7,8]
 		var longOddLateral = [false, true, false, true, false, true, false, false, false]
 		var longEvenLateral = [false, false, true, false, true, false, true, false, false]
@@ -100,9 +100,20 @@ function exerciseController(){
 				//new found single exercise object is passed back to client. 
 				console.log("newIndExercise seyz.....>>>>", result);  //can delete
 				res.json(result);
+			};
+		});
+	};
+
+	this.singleExercise = function(req,res){
+		Exercise.findOne({_id:req.params.id}, function(err,result){
+			if(err){
+				console.log(err);
 			}
-		})
-	}
+			else{
+				res.json(result);
+			};
+		});
+	};
 };
 
 module.exports = new exerciseController;

@@ -25,6 +25,7 @@ workoutApp.factory("userFactory", ["$http", "$cookies", function($http, $cookies
 				callback(returnedData);
 			});
 		};
+		//start of deprecated data functions
 		this.addBody = function(bodyName, bodyRank, callback){
 			passed_data = {name: bodyName, rank: bodyRank};
 			$http.post("/add_body", passed_data).then(function(returnedData){
@@ -49,12 +50,22 @@ workoutApp.factory("userFactory", ["$http", "$cookies", function($http, $cookies
 				callback(returnedList);
 			});
 		};
+		//end of deprecated data functions
 		this.getCurrentUser = function(callback){
 			$http.get("/get_user/"+$cookies.get("currentUserId")).then(function(returnedUser){
 				callback(returnedUser);
 			});
 		};
-
+		this.setGoal = function(eId, uId, goal, callback){
+			$http.get("/set_goal/"+uId+"/"+eId+"/"+goal).then(function(returnedData){
+				callback(returnedData.data);
+			});
+		};
+		this.modifyGoal = function(data, callback){
+			$http.post("/modify_goal/", data).then(function(returnedData){
+				callback(returnedData);
+			});
+		};
 	};
 	return new factoryMethods;
 }]);

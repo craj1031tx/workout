@@ -9,14 +9,12 @@
 		<th>Name</th>
 		<th>Type</th>
 		<th>Goal</th>
-		<th>Description</th>
 		<th>Actions</th>
 	</tr>
 	<tr ng-repeat="e in todaysWorkout track by $index">
-		<td>{{e.name}}</td>
-		<td>{{e.bodyName}}</td>
+		<td><a ng-href="#/exercise/{{e._id}}">{{e.name}}</a></td>
+		<td>{{e.bodyName}} || {{e.bodyRank}}</td>
 		<td>0000</td>
-		<td>link to popout</td>
 		<td><button ng-click="getNewIndividual(e, $index)">Get New</button></td>
 	</tr>
 </table>

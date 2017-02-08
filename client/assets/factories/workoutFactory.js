@@ -16,6 +16,12 @@ workoutApp.factory("workoutFactory", ["$http", "$cookies", function($http, $cook
 			});
 		};
 
+		this.singleExercise = function(id, callback){
+			$http.get("/workouts/exercises/"+id).then(function(returnedData){
+				callback(returnedData.data);
+			});
+		};
+
 	};
 	return new factoryMethods;
 }]);

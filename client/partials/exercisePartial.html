@@ -1,0 +1,16 @@
+<!-- exercise partial for viewing information about a specific exercise and setting goal figures  -->
+<div>
+	<h2>{{cE.name}} <small>{{cE.bodyName}}</small></h2>
+
+	<h4>{{cE.description}}</h4>
+
+	<h3>Goal: <div ng-if="theUser.goals.hasOwnProperty(cE._id)">{{theUser.goals[cE._id]}}</div><div ng-if="!theUser.goals.hasOwnProperty(cE._id)">you have not yet done this...</div> </h3>
+
+
+	<form>
+		Enter a number:<input type="number" ng-model="newGoal.value">
+		<button ng-click='setGoal(cE._id, theUser._id, newGoal.value)'>Submit</button>
+	</form>
+	<button ng-click='modifyGoal(cE._id, theUser._id, 5)'>Add 5</button>
+	<button ng-click='modifyGoal(cE._id, theUser._id, -5)'>Remove 5</button>
+</div>

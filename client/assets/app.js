@@ -20,5 +20,9 @@ workoutApp.config(function($routeProvider){
 		templateUrl:"/partials/dashboardPartial.html",
 		controller: "dashboardController"
 	})
+	.when("/exercise/:id",{
+		templateUrl:"/partials/exercisePartial.html",
+		controller: "exerciseController"
+	})
 	.otherwise({redirectTo:"/"})
 })
