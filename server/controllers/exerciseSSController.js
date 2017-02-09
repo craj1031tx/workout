@@ -1,7 +1,5 @@
 //EXERCISE SS CONTROLLER
 
-console.log("loading exerciseSSController.js...");
-
 var mongoose = require("mongoose");
 var moment = require("moment");
 
@@ -13,14 +11,14 @@ function exerciseController(){
 		var dateNumber = moment().date();
 		var dayNumber = moment().day();
 		//scaffold arrays that dictate which type of workouts should be picked based on day/date.
-		var shortOdd = [0,1,4,6,7,8]
-		var shortEven = [0,2,3,5,7,8]
-		var shortOddDayLateral = [false, true, false, true, false, false]
-		var shortEvenDayLateral = [false, false, true, false, false, false]
-		var longRank = [0,1,2,3,4,5,6,7,8]
-		var longOddLateral = [false, true, false, true, false, true, false, false, false]
-		var longEvenLateral = [false, false, true, false, true, false, true, false, false]
-		var todaysWorkout = []
+		var shortOdd = [0,1,4,6,7,8];
+		var shortEven = [0,2,3,5,7,8];
+		var shortOddDayLateral = [false, true, false, true, false, false];
+		var shortEvenDayLateral = [false, false, true, false, false, false];
+		var longRank = [0,1,2,3,4,5,6,7,8];
+		var longOddLateral = [false, true, false, true, false, true, false, false, false];
+		var longEvenLateral = [false, false, true, false, true, false, true, false, false];
+		var todaysWorkout = [];
 
 		//setting bodyRank and unilateral type lists based on what day it is. 
 		if(dateNumber%2==0){
@@ -50,15 +48,14 @@ function exerciseController(){
 						//if an exercises body type matches the current body type's loop AND shortLateral requirement, push it into aBodyList
 						if(allE[j].bodyRank==shortRank[i] && allE[j].uni==shortLateral[i]){
 							aBodyList.push(allE[j]);
-						}
-					}
+						};
+					};
 					//aBodyList is now populated with all exercise documents of its body type. 
 					//Picking and pushing a random exercise from the list of available exercises per body type. 
 					var randomExercisePerType = aBodyList[Math.floor(Math.random()*aBodyList.length)];
 					todaysWorkout.push(randomExercisePerType);
-				}
+				};
 				//return object and finishing promise.
-				console.log("promise finished............", todaysWorkout); //can delete
 				res.json(todaysWorkout);
 				//end of promise for short length workout.
 			});
@@ -75,15 +72,14 @@ function exerciseController(){
 						//if an exercises body type matches the current body type's loop AND shortLateral requirement, push it into aBodyList
 						if(allE[j].bodyRank==longRank[i] && allE[j].uni==longLateral[i]){
 							aBodyList.push(allE[j]);
-						}
-					}
+						};
+					};
 					//aBodyList is now populated with all exercise documents of its body type. 
 					//Picking and pushing a random exercise from the list of available exercises per body type. 
 					var randomExercisePerType = aBodyList[Math.floor(Math.random()*aBodyList.length)];
 					todaysWorkout.push(randomExercisePerType);
-				}
+				};
 				//return object and finishing promise.
-				console.log("promise finished............", todaysWorkout); //can delete 
 				res.json(todaysWorkout);
 				//end of promise for long length workout.
 			});
@@ -98,7 +94,6 @@ function exerciseController(){
 			}
 			else{
 				//new found single exercise object is passed back to client. 
-				console.log("newIndExercise seyz.....>>>>", result);  //can delete
 				res.json(result);
 			};
 		});

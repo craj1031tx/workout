@@ -1,9 +1,10 @@
 <!-- dashboard partial... -->
 <h2>Welcome to your user dashboard, {{theUser.fn}}</h2>
-
+<button ng-click="logout();">Logout</button>
 <button ng-click="newWorkout('short');">Start short workout</button>
 <button ng-click="newWorkout('long');">Start long workout</button>
 <hr>
+Workout from: {{workoutTimestamp.time | date:'MMMM-dd'}}
 <table class="table">
 	<tr>
 		<th>Name</th>
@@ -14,7 +15,7 @@
 	<tr ng-repeat="e in todaysWorkout track by $index">
 		<td><a ng-href="#/exercise/{{e._id}}">{{e.name}}</a></td>
 		<td>{{e.bodyName}} || {{e.bodyRank}}</td>
-		<td>0000</td>
+		<td>{{getGoal($index)}}</td>
 		<td><button ng-click="getNewIndividual(e, $index)">Get New</button></td>
 	</tr>
 </table>

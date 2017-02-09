@@ -6,25 +6,24 @@ workoutApp.controller("exerciseController", ["$scope", "userFactory", "workoutFa
 		$scope.cE = returnedData;
 	});
 
-	var reloadUser = function(){
+	var setCurrentUser = function(){
 		userFactory.getCurrentUser(function(user){
-		$scope.theUser = user.data;
-		console.log($scope.theUser);
+			$scope.theUser = user.data;
 		});
 	};
-	reloadUser();
+	setCurrentUser();
 	
 
 	$scope.setGoal = function(eId, uId, goal){
 		userFactory.setGoal(eId, uId, goal, function(returnedData){
-			reloadUser();
+			setCurrentUser();
 		});
 	};
 
 	$scope.modifyGoal = function(eId, uId, amount){
 		var data = {eId, uId, amount};
 		userFactory.modifyGoal(data, function(returnedData){
-			reloadUser();
+			setCurrentUser();
 		});
 	};
 }]);

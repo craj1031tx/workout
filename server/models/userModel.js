@@ -1,7 +1,5 @@
 //USER BLANK MODEL
 
-console.log("loading userModel.js...");
-
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema;

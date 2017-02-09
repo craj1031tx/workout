@@ -1,6 +1,4 @@
-//BLANK SS CONTROLLER
-
-console.log("loading userSSController.js...");
+//USER SS CONTROLLER
 
 var mongoose = require("mongoose");
 var bcrypt = require("bcrypt-nodejs");
@@ -13,7 +11,7 @@ function userController(){
 		var theNewUser = new User({fn: req.body.fn, un: req.body.un, pin: Number(req.body.pin)});
 		theNewUser.save(function(err, returnedData){
 			if(err){
-				res.json({errors:["The registration wasn't successful"]})
+				res.json({errors:["The registration wasn't successful. Please fill out all fields and use a pin that is 4 digits long. "]})
 			}
 			else{
 				res.json(returnedData);
@@ -65,6 +63,7 @@ function userController(){
 				console.log(err)
 			}
 			else{
+				console.log(returnedUser);
 				returnedUser.goals[req.params.eId] = Number(req.params.newGoal);
 				returnedUser.markModified('goals');
 				returnedUser.save(function(err2, result){
@@ -85,9 +84,7 @@ function userController(){
 				console.log(err)
 			}
 			else{
-				console.log("found user", returnedUser); //can delete
 				if(returnedUser.goals.hasOwnProperty(req.body.eId)){
-					console.log("this user has a record for that exercise...!!!!!!!!!!!!!");
 					returnedUser.goals[req.body.eId] += req.body.amount;
 					returnedUser.markModified('goals');
 					returnedUser.save(function(err2, result){

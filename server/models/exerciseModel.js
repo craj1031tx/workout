@@ -1,7 +1,5 @@
 //EXERCISE MODEL
 
-console.log("loading exerciseModel.js...");
-
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema;
