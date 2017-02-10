@@ -8,8 +8,7 @@
   			<form>
 	  			<div class="form-group">
 	  				<label for="loginSelect">Select a user.</label>
-					<select id="loginSelect" ng-model="selectedUser" size="10" class="form-control">
-						<option>Select a user below</option default>
+					<select id="loginSelect" ng-model="selectedUser" class="form-control">
 						<option ng-repeat="user in userList" value="{{user._id}}">{{user.fn}}</option>		
 					</select>
 				</div>
@@ -17,7 +16,7 @@
 					<label for="loginPin">Enter your pin.</label>
 					<input id="loginPin" type="number" class="form-control" ng-model="userPin" placeholder="0000">
 				</div>
-				<button class="btn btn-default" ng-click="loginUser();">Login.</button>
+				<button class="btn btn-primary btn-lg" ng-click="loginUser();">Login.</button>
 			</form>
   		</div>
   		<div class="col-md-6">
@@ -35,7 +34,7 @@
 					<label for="registerPin">PIN</label>
 					<input id="registerPin" type="number" class="form-control" ng-model="newUserInfo.pin" placeholder="0000">
 				</div>
-				<button class="btn btn-default" ng-click="register();">Sign up.</button>				
+				<button class="btn btn-success btn-lg" ng-click="register();">Sign up.</button>				
 			</form>
   		</div>
 	</div>
