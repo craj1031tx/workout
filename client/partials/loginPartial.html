@@ -1,11 +1,14 @@
 <!-- login partial -->
 <div>
 	<h1>Workout App.</h1>
-	<div><h2 ng-repeat="error in listOfErrors" style="color:red;">{{error}}</h2></div>
+	<div class="row">
+		<div ng-if="listOfErrors" class="alert alert-danger" role="alert"><p ng-repeat="error in listOfErrors"><strong>{{error}}</strong></p></div>	
+	</div>
+	
 	<div class="row">
   		<div class="col-md-6">
   			<h2>Login.</h2>
-  			<form>
+  			<form class="form-horizontal">
 	  			<div class="form-group">
 	  				<label for="loginSelect">Select a user.</label>
 					<select id="loginSelect" ng-model="selectedUser" class="form-control">
@@ -14,7 +17,7 @@
 				</div>
 				<div class="form-group">
 					<label for="loginPin">Enter your pin.</label>
-					<input id="loginPin" type="number" class="form-control" ng-model="userPin" placeholder="0000">
+					<input id="loginPin" type="number" class="form-control" ng-model="userPin" placeholder="0000" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "4">
 				</div>
 				<button class="btn btn-primary btn-lg" ng-click="loginUser();">Login.</button>
 			</form>
@@ -32,9 +35,9 @@
 				</div>
 				<div class="form-group">
 					<label for="registerPin">PIN</label>
-					<input id="registerPin" type="number" class="form-control" ng-model="newUserInfo.pin" placeholder="0000">
+					<input id="registerPin" type="number" class="form-control" ng-model="newUserInfo.pin" placeholder="0000" maxlength="4">
 				</div>
-				<button class="btn btn-success btn-lg" ng-click="register();">Sign up.</button>				
+				<div class="row"><button class="btn btn-success btn-lg" ng-click="register();">Sign up.</button>	</div>			
 			</form>
   		</div>
 	</div>
