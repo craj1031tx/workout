@@ -6,6 +6,14 @@ workoutApp.controller("loginController", ["$scope", "userFactory", "$location", 
 		$location.url("/dashboard");
 	}
 
+	//test
+	$scope.testChange = function(){
+		if($scope.test123.length>4){
+			console.log('runnin!')
+			$scope.test123 = $scope.test123.slice(0,4);
+		};
+	};
+
 	$scope.register = function(){
 		userFactory.registerUser($scope.newUserInfo, function(returnedData){
 			if(returnedData.data.errors){
