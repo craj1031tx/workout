@@ -99,8 +99,21 @@ function exerciseController(){
 		});
 	};
 
+	//Pulls document for a single exercise based on its _id gathered from a url parameter.
 	this.singleExercise = function(req,res){
 		Exercise.findOne({_id:req.params.id}, function(err,result){
+			if(err){
+				console.log(err);
+			}
+			else{
+				res.json(result);
+			};
+		});
+	};
+
+	//Pulls a list of documents for a body rank class based on the bodyRank number from a url parameter.
+	this.getGroup = function(req,res){
+		Exercise.find({bodyRank:req.params.rank}, function(err, result){
 			if(err){
 				console.log(err);
 			}

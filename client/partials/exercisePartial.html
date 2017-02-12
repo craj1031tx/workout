@@ -1,33 +1,36 @@
 <!-- exercise partial for viewing information about a specific exercise and setting goal figures  -->
-<div>
-	<div class="row"><a href="/#/dashboard" class="btn btn-primary">Dashboard</a></div>
-	<div class="row">
-		<h2>{{cE.name}} <small>{{cE.bodyName}}</small></h2>
+<div class="row">
+<ul class="nav nav-pills">
+	<li role="presentation"><a href="/#/dashboard">Dash</a></li>
+	<li role="presentation" class="active"><a href="/#/list">All</a></li>
+	<!-- <li role="presentation"><a href="/#/pick">Choose</a></li> -->
+	<li role="presentation"><button ng-click="logout();" class="btn btn-warning">Logout</button></li>
+</ul>	
+</div>
+<div class="row">
+	<h2>{{cE.name}} <small>{{cE.bodyName}}</small></h2>
+</div>
+
+<div class="row"><h4>{{cE.description}}</h4></div>
+
+<div class="row">
+	<div class="col-xs-3"><button ng-click='modifyGoal(cE._id, theUser._id, -5)' class="btn btn-danger">Remove 5</button></div>
+	<div class="col-xs-6">
+		<h3 ng-if="theUser.goals.hasOwnProperty(cE._id)">Goal: {{theUser.goals[cE._id]}}</h3>
+		<h3 ng-if="!theUser.goals.hasOwnProperty(cE._id)">Exercise not yet accomplished</h3>
 	</div>
-
-	<div class="row"><h4>{{cE.description}}</h4></div>
-
-	<div class="row">
-		<div class="col-xs-3"><button ng-click='modifyGoal(cE._id, theUser._id, -5)' class="btn btn-danger">Remove 5</button></div>
-		<div class="col-xs-6">
-			<h3 ng-if="theUser.goals.hasOwnProperty(cE._id)">Goal: {{theUser.goals[cE._id]}}</h3>
-			<h3 ng-if="!theUser.goals.hasOwnProperty(cE._id)">Exercise not yet accomplished</h3>
-		</div>
-		<div class="col-xs-3"><button ng-click='modifyGoal(cE._id, theUser._id, 5)' class="btn btn-success">Add 5</button></div>
-		
-	</div>
-
-
-	<div class="row">
-		<form class="form-inline">
-			<label for="goalInput">Enter a weight:</label>
-			<div class="input-group">
-				<input id="goalInput" class="form-control" type="number" ng-model="newGoal.value">
-				<div class="input-group-addon">lbs</div>
-			</div>
-			<button type="submit" ng-click='setGoal(cE._id, theUser._id, newGoal.value)' class="btn btn-info">Submit</button>
-		</form>
-	</div>
-
+	<div class="col-xs-3"><button ng-click='modifyGoal(cE._id, theUser._id, 5)' class="btn btn-success">Add 5</button></div>
 	
+</div>
+
+
+<div class="row">
+	<form class="form-inline">
+		<label for="goalInput">Enter a weight:</label>
+		<div class="input-group">
+			<input id="goalInput" class="form-control" type="number" ng-model="newGoal.value">
+			<div class="input-group-addon">lbs</div>
+		</div>
+		<button type="submit" ng-click='setGoal(cE._id, theUser._id, newGoal.value)' class="btn btn-info">Submit</button>
+	</form>
 </div>

@@ -6,6 +6,14 @@ workoutApp.controller("exerciseController", ["$scope", "userFactory", "workoutFa
 		$scope.cE = returnedData;
 	});
 
+	$scope.logout = function(){
+		//$cookies.remove("todaysWorkout");
+		//$cookies.remove("workoutTimestamp");
+		$cookies.remove("currentUserId");
+		$cookies.remove("theUser");
+		$location.url("/");
+	};
+	
 	//helper to set current user.
 	var setCurrentUser = function(){
 		userFactory.getCurrentUser(function(user){
@@ -26,6 +34,13 @@ workoutApp.controller("exerciseController", ["$scope", "userFactory", "workoutFa
 		var data = {eId, uId, amount};
 		userFactory.modifyGoal(data, function(returnedData){
 			setCurrentUser();
+		});
+	};
+
+	//Accepts argument of bodyRank and gives back a list of each type
+	$scope.getGroup = function(rank){
+		workoutFactory.getGroup(rank, function(returnedData){
+			$scope.eList = returnedData;
 		});
 	};
 }]);

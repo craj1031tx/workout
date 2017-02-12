@@ -1,0 +1,49 @@
+<!-- listPartial.html -->
+<div class="row">
+	<ul class="nav nav-pills">
+		<li role="presentation"><a href="/#/dashboard">Dash</a></li>
+		<li role="presentation" class="active"><a href="/#/list">All</a></li>
+		<!-- <li role="presentation"><a href="/#/pick">Choose</a></li> -->
+		<li role="presentation"><button ng-click="logout();" class="btn btn-warning">Logout</button></li>
+	</ul>	
+</div>
+<div class="row"><h3>Choose a body category below:</h3></div>
+<div class="row">
+	<div class="btn-toolbar" role="toolbar">
+		<div class="btn-group" role="group">
+			<button class="btn btn-default" ng-click="getGroup(0)">Explosive</button>
+			<button class="btn btn-default" ng-click="getGroup(1)">Knee</button>
+			<button class="btn btn-default" ng-click="getGroup(2)">Hip</button>
+			<button class="btn btn-default" ng-click="getGroup(3)">H Push</button>
+			<button class="btn btn-default" ng-click="getGroup(4)">H Pull</button>		
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="btn-toolbar" role="toolbar">
+		<div class="btn-group" role="group">
+			<button class="btn btn-default" ng-click="getGroup(5)">V Push</button>
+			<button class="btn btn-default" ng-click="getGroup(6)">V Pull</button>
+			<button class="btn btn-default" ng-click="getGroup(7)">Rotational</button>
+			<button class="btn btn-default" ng-click="getGroup(8)">Core</button>	
+		</div>
+	</div>
+</div>
+<br>
+
+<table ng-if="eList" class="table table-striped table-bordered">
+	<caption><h4>{{eList[0].bodyName}}</h4></caption>
+	<col width="100">
+	<col width="200">
+	<tr>
+		<th><strong>Name</strong></th>
+		<th><strong>Description</strong></th>
+	</tr>
+	<tr ng-repeat="e in eList">
+		<td><a href="#/exercise/{{e._id}}">{{e.name}}</a></td>
+		<td>{{e.description}}</td>
+	</tr>
+</table>
+
+				

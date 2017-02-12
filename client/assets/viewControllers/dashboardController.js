@@ -32,7 +32,7 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 	//function call to app factory to generate a new workout. Sorting of exercise data is all done serverside. length is passed in as a string.
 	$scope.newWorkout = function(length){
 		workoutFactory.newWorkout(length, $scope.theUser._id, function(returnedData){
-			$scope.todaysWorkout = returnedData.data;
+			$scope.todaysWorkout = returnedData;
 			$cookies.putObject("todaysWorkout", $scope.todaysWorkout);
 			//date on which newWorkout was created. Must be done as an object because normal $cookies.put only support string types.
 			$scope.workoutTimestamp = {time: new Date()};
@@ -43,7 +43,7 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 	//function to get a new individual exercise that has the same parameters as the exercise that it replaces. All sorting and aggregating is done server side.
 	$scope.getNewIndividual = function(workoutObject, indexLocation){
 		workoutFactory.getNewIndividual(workoutObject, function(returnedData){
-			$scope.todaysWorkout[indexLocation] = returnedData.data[0];
+			$scope.todaysWorkout[indexLocation] = returnedData[0];
 			$cookies.putObject("todaysWorkout", $scope.todaysWorkout);
 		});
 	};

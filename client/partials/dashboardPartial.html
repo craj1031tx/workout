@@ -1,11 +1,15 @@
 <!-- dashboard partial... -->
 <div class="row">
-	<div class="col-xs-11">
+	<ul class="nav nav-pills">
+		<li role="presentation" class="active"><a href="/#/dashboard">Dash</a></li>
+		<li role="presentation"><a href="/#/list">All</a></li>
+		<!-- <li role="presentation"><a href="/#/pick">Choose</a></li> -->
+		<li role="presentation"><button ng-click="logout();" class="btn btn-warning">Logout</button></li>
+	</ul>	
+</div>
+												
+<div class="row">
 		<h2>Welcome to your user dashboard, {{theUser.fn}}</h2>
-	</div>
-	<div class="col-xs-1">
-		<button ng-click="logout();" class="btn btn-primary btn-sm">Logout</button>
-	</div>
 </div>
 <div class="row">
 	<button ng-click="newWorkout('short');" class="btn btn-primary">Start short workout</button>

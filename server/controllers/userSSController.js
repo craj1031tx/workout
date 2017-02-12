@@ -63,7 +63,6 @@ function userController(){
 				console.log(err)
 			}
 			else{
-				console.log(returnedUser);
 				returnedUser.goals[req.params.eId] = Number(req.params.newGoal);
 				returnedUser.markModified('goals');
 				returnedUser.save(function(err2, result){
@@ -78,6 +77,7 @@ function userController(){
 		});
 	};
 
+	//Adds or subtracts a passed amount from the goals object of the user document. First checks to see if a key corresponding to an excercises _id exists within the user's goal object. if it does, it is modified, if not, it is created and set to the passed amount value.
 	this.modifyGoal = function(req,res){
 		User.findOne({_id:req.body.uId}, function(err, returnedUser){
 			if(err){
@@ -97,7 +97,7 @@ function userController(){
 					});
 				}
 				else{
-					returnedUser.goals[req.body.eId] = 0;
+					returnedUser.goals[req.body.eId] = req.body.amount;
 					returnedUser.markModified('goals');
 					returnedUser.save(function(err2, result){
 						if(err2){

@@ -28,7 +28,7 @@ module.exports = function(app){
 	app.post("/workouts/new_individual_exercise", exerciseCtrl.newIndividalExercise);
 
 	app.get("/workouts/exercises/:id", exerciseCtrl.singleExercise);
-
+	app.get("/workouts/get_group/:rank", exerciseCtrl.getGroup);
 	//Goals routes
 
 
