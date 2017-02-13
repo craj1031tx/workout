@@ -14,16 +14,16 @@
 <div class="row"><h4>{{cE.description}}</h4></div>
 
 <div class="row">
-	<div class="col-xs-3"><button ng-click='modifyGoal(cE._id, theUser._id, -5)' class="btn btn-danger">Remove 5</button></div>
-	<div class="col-xs-6">
-		<h3 ng-if="theUser.goals.hasOwnProperty(cE._id)">Goal: {{theUser.goals[cE._id]}}</h3>
-		<h3 ng-if="!theUser.goals.hasOwnProperty(cE._id)">Exercise not yet accomplished</h3>
-	</div>
-	<div class="col-xs-3"><button ng-click='modifyGoal(cE._id, theUser._id, 5)' class="btn btn-success">Add 5</button></div>
-	
+	<div class="btn-toolbar" role="toolbar" class="col-xs-6">
+		<div class="btn-group" role="group">
+			<button ng-click='modifyGoal(cE._id, theUser._id, -5)' class="btn btn-danger">-5 lbs</button>
+			<button ng-if="theUser.goals.hasOwnProperty(cE._id)" class="btn btn-default">Goal: {{theUser.goals[cE._id]}} lbs</button>
+			<button ng-if="!theUser.goals.hasOwnProperty(cE._id)" class="btn btn-default">Exercise not yet accomplished</button>
+			<button ng-click='modifyGoal(cE._id, theUser._id, 5)' class="btn btn-success">+5 lbs</button>
+		</div>
+	</div>	
 </div>
-
-
+<br>
 <div class="row">
 	<form class="form-inline">
 		<label for="goalInput">Enter a weight:</label>
