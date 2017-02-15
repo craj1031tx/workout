@@ -8,10 +8,6 @@ workoutApp.config(function($routeProvider){
 		templateUrl: "/partials/loginPartial.html",
 		controller: "loginController"
 	})
-	.when("/blank", {
-		templateUrl: "/partials/blankPartial.html",
-		controller: "blankController"
-	})
 	.when("/data",{
 		templateUrl: "/partials/dataPartial.html",
 		controller: "dataController"
@@ -24,11 +20,6 @@ workoutApp.config(function($routeProvider){
 		templateUrl: "/partials/listPartial.html",
 		controller: "exerciseController"
 	})
-	// .when("/pick",{
-	// 	templateUrl: "/partials/pickPartial.html",
-	// 	controller: "exerciseController"
-
-	// })
 	.when("/exercise/:id",{
 		templateUrl: "/partials/exercisePartial.html",
 		controller: "exerciseController"

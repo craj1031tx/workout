@@ -51,9 +51,11 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 	//returns a goal value by receiving todaysWorkout's index number per exercise and concatenating that exercises id into the user.goals object.
 	$scope.getGoal = function(indexValue){
 		var eId = $scope.todaysWorkout[indexValue]._id;
-		var testVar = $scope.theUser.goals
-		if(testVar[eId]){
-			return testVar[eId];
+		if($scope.theUser.goals){
+			var testVar = $scope.theUser.goals
+			if(testVar[eId]){
+				return testVar[eId];
+			}
 		};
 		return "0";		
 	};

@@ -22,7 +22,7 @@ workoutApp.controller("loginController", ["$scope", "userFactory", "$location", 
 			else {
 				$cookies.putObject("theUser", returnedData.data);
 				$cookies.put("currentUserId", returnedData.data._id);
-				$location.url("/")
+				$location.url("/dashboard")
 			};
 		});
 	};
