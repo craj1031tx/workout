@@ -2,9 +2,12 @@
 
 workoutApp.controller("exerciseController", ["$scope", "userFactory", "workoutFactory", "$location", "$routeParams", "$cookies", function($scope, userFactory, workoutFactory, $location, $routeParams, $cookies){
 
-	workoutFactory.singleExercise($routeParams.id, function(returnedData){
+	//loads the currentExercise object for the individual exercise view. Allows this controller to be used by multiple partials without conflicts. 
+	if($routeParams.id){
+		workoutFactory.singleExercise($routeParams.id, function(returnedData){
 		$scope.cE = returnedData;
-	});
+		});
+	};	
 
 	$scope.logout = function(){
 		//$cookies.remove("todaysWorkout");
@@ -43,4 +46,10 @@ workoutApp.controller("exerciseController", ["$scope", "userFactory", "workoutFa
 			$scope.eList = returnedData;
 		});
 	};
+
+	//picks a random exercise from the eList list of group exercises and forwards user to that exercise's page.
+	$scope.pickRandomFromEList = function(){
+		var randomExercise = $scope.eList[Math.floor(Math.random() * $scope.eList.length)];
+		$location.url("/exercise/"+randomExercise._id);
+	}
 }]);

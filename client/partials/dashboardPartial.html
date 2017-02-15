@@ -17,32 +17,35 @@
 </div>
 
 <div class="row">
-	<h3><small>Workout from:</small> {{workoutTimestamp.time | date:'MMMM dd'}}</h3>
+	<h4><small>Workout from:</small> {{workoutTimestamp.time | date:'MMMM dd'}}</h4>
 </div>
 
 <div class="row">
-	<div class="row" ng-repeat="e in todaysWorkout track by $index">
-		<div class="row">
-			<div class="col-xs-6">
-				<h4><a ng-href="#/exercise/{{e._id}}">{{e.name}}</a></h4>
+	<div class="panel panel-default" ng-repeat="e in todaysWorkout track by $index" ng-init="classSuccess = false" ng-class="{'panel-success':classSuccess}">
+		<div class="panel-heading">
+			<h4><a ng-href="#/exercise/{{e._id}}">{{e.name}}</a><small> | {{e.bodyName}}</small></h4>
+		</div>
+		<div class="panel-body">
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group" role="group">
+					<button class="btn btn-info" ng-click="classSuccess = !classSuccess;">Exercise Complete.</button>
+					<button ng-click="getNewIndividual(e, $index); classSuccess=false" class="btn btn-warning">Get New.</button>
+				</div>					
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6">
-				<h4><small>{{e.bodyName}}</small></h4>
+			<br>
+			<div class="btn-toolbar">
+				<div class="btn-group" role="group">
+					<button ng-click='modifyGoal(e._id, theUser._id, -5)' class="btn btn-danger">-5 lbs</button>
+					<button class="btn btn-default">{{getGoal($index)}} lbs</button>
+					<button ng-click='modifyGoal(e._id, theUser._id, 5)' class="btn btn-success">+5 lbs</button>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3"><button ng-click='modifyGoal(e._id, theUser._id, -5)' class="btn btn-danger">-5</button></div>
-			<div class="col-xs-3"><button class="btn btn-default">{{getGoal($index)}}</button></div>
-			<div class="col-xs-3"><button ng-click='modifyGoal(e._id, theUser._id, 5)' class="btn btn-success">+5</button></div>
-			<div class="col-xs-3"><button ng-click="getNewIndividual(e, $index)" class="btn btn-warning">Get New</button></div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6">
-				<p>{{e.description}}</p>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<p>{{e.description}}</p>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-

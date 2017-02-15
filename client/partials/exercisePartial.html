@@ -2,35 +2,39 @@
 <div class="row">
 <ul class="nav nav-pills">
 	<li role="presentation"><a href="/#/dashboard">Dash</a></li>
-	<li role="presentation" class="active"><a href="/#/list">All</a></li>
+	<li role="presentation"><a href="/#/list">All</a></li>
 	<!-- <li role="presentation"><a href="/#/pick">Choose</a></li> -->
 	<li role="presentation"><button ng-click="logout();" class="btn btn-warning">Logout</button></li>
 </ul>	
 </div>
-<div class="row">
-	<h2>{{cE.name}} <small>{{cE.bodyName}}</small></h2>
-</div>
-
-<div class="row"><h4>{{cE.description}}</h4></div>
 
 <div class="row">
-	<div class="btn-toolbar" role="toolbar" class="col-xs-6">
-		<div class="btn-group" role="group">
-			<button ng-click='modifyGoal(cE._id, theUser._id, -5)' class="btn btn-danger">-5 lbs</button>
-			<button ng-if="theUser.goals.hasOwnProperty(cE._id)" class="btn btn-default">Goal: {{theUser.goals[cE._id]}} lbs</button>
-			<button ng-if="!theUser.goals.hasOwnProperty(cE._id)" class="btn btn-default">Exercise not yet accomplished</button>
-			<button ng-click='modifyGoal(cE._id, theUser._id, 5)' class="btn btn-success">+5 lbs</button>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>{{cE.name}}<small> | {{cE.bodyName}}</small></h4>
+		</div>
+		<div class="panel-body">
+			{{cE.description}}
+			<br>
+			<br>
+			<div class="btn-toolbar" role="toolbar" class="col-xs-6">
+				<div class="btn-group" role="group">
+					<button ng-click='modifyGoal(cE._id, theUser._id, -5)' class="btn btn-danger">-5 lbs</button>
+					<button ng-if="theUser.goals.hasOwnProperty(cE._id)" class="btn btn-default">Goal: {{theUser.goals[cE._id]}} lbs</button>
+					<button ng-if="!theUser.goals.hasOwnProperty(cE._id)" class="btn btn-default">Start!</button>
+					<button ng-click='modifyGoal(cE._id, theUser._id, 5)' class="btn btn-success">+5 lbs</button>
+				</div>
+			</div>
+			<br>
+			<form class="form-inline">
+				<label for="goalInput">Enter a weight:</label>
+				<div class="input-group">
+					<input id="goalInput" class="form-control" type="number" ng-model="newGoal.value">
+					<div class="input-group-addon">lbs</div>
+				</div>
+				<button type="submit" ng-click='setGoal(cE._id, theUser._id, newGoal.value)' class="btn btn-info">Submit</button>
+			</form>
 		</div>
 	</div>	
 </div>
-<br>
-<div class="row">
-	<form class="form-inline">
-		<label for="goalInput">Enter a weight:</label>
-		<div class="input-group">
-			<input id="goalInput" class="form-control" type="number" ng-model="newGoal.value">
-			<div class="input-group-addon">lbs</div>
-		</div>
-		<button type="submit" ng-click='setGoal(cE._id, theUser._id, newGoal.value)' class="btn btn-info">Submit</button>
-	</form>
-</div>
+

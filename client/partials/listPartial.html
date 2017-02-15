@@ -31,6 +31,9 @@
 	</div>
 </div>
 <br>
+<div class="row" ng-if="eList">
+	<button class="btn btn-warning" ng-click="pickRandomFromEList();">Randomly Select</button>
+</div>
 
 <table ng-if="eList" class="table table-striped table-bordered">
 	<caption><h4>{{eList[0].bodyName}}</h4></caption>
