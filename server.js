@@ -17,6 +17,6 @@ require("./server/controllers/userSSController.js");
 require("./server/controllers/exerciseSSController.js");
 require("./server/configs/routes.js")(app);
 
-app.listen(8000, function(){
-	console.log("Now listening on port 8000");
+app.listen(8001, function(){
+	console.log("Now listening on port 8001");
 })

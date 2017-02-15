@@ -7,7 +7,6 @@ var User = mongoose.model("User");
 
 function userController(){
 	this.register = function(req, res){
-		console.log("userSSControler received...:", req.body);
 		var theNewUser = new User({fn: req.body.fn, un: req.body.un, pin: Number(req.body.pin)});
 		theNewUser.save(function(err, returnedData){
 			if(err){
@@ -37,7 +36,6 @@ function userController(){
 				res.json({errors:["login failed"]});
 			}
 			else if(result && result.pin == req.body.pin){
-				console.log("the login was successful:",result);
 				res.json(result);
 			}
 			else{
@@ -56,6 +54,7 @@ function userController(){
 			};
 		});
 	};
+
 	//need to use mark modified to actually save data! because we're using mixed object types. problem with mongoose...
 	this.setGoal = function(req,res){
 		User.findOne({_id:req.params.uId}, function(err, returnedUser){
@@ -111,10 +110,6 @@ function userController(){
 			};
 		});
 	};
-
-
-
-
 };
 
 module.exports = new userController;
