@@ -8,10 +8,9 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 	};
 
 	//loading cookies for controller view binding 
-	$scope.todaysWorkout = $cookies.getObject("todaysWorkout");
-	$scope.workoutTimestamp = $cookies.getObject("workoutTimestamp");
-	$scope.theUser = $cookies.getObject("theUser");
-
+	$scope.todaysWorkout = JSON.parse(localStorage.getItem("todaysWorkout"));
+	$scope.workoutTimestamp = JSON.parse(localStorage.getItem("workoutTimestamp"));
+	$scope.theUser = JSON.parse(localStorage.getItem("theUser"));
 
 	//helper method for setting current user (useful for reloading goals)
 	var setCurrentUser = function(){
@@ -22,10 +21,8 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 	setCurrentUser();
 
 	$scope.logout = function(){
-		//$cookies.remove("todaysWorkout");
-		//$cookies.remove("workoutTimestamp");
 		$cookies.remove("currentUserId");
-		$cookies.remove("theUser");
+		localStorage.removeItem("theUser");
 		$location.url("/");
 	};
 
@@ -33,10 +30,10 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 	$scope.newWorkout = function(length){
 		workoutFactory.newWorkout(length, $scope.theUser._id, function(returnedData){
 			$scope.todaysWorkout = returnedData;
-			$cookies.putObject("todaysWorkout", $scope.todaysWorkout);
+			localStorage.setItem("todaysWorkout", JSON.stringify($scope.todaysWorkout));
 			//date on which newWorkout was created. Must be done as an object because normal $cookies.put only support string types.
 			$scope.workoutTimestamp = {time: new Date()};
-			$cookies.putObject("workoutTimestamp", $scope.workoutTimestamp);
+			localStorage.setItem("workoutTimestamp", JSON.stringify($scope.workoutTimestamp));
 		});
 	};
 
@@ -44,7 +41,7 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 	$scope.getNewIndividual = function(workoutObject, indexLocation){
 		workoutFactory.getNewIndividual(workoutObject, function(returnedData){
 			$scope.todaysWorkout[indexLocation] = returnedData[0];
-			$cookies.putObject("todaysWorkout", $scope.todaysWorkout);
+			localStorage.setItem("todaysWorkout", JSON.stringify($scope.todaysWorkout));
 		});
 	};
 

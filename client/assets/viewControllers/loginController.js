@@ -6,21 +6,13 @@ workoutApp.controller("loginController", ["$scope", "userFactory", "$location", 
 		$location.url("/dashboard");
 	}
 
-	//test
-	$scope.testChange = function(){
-		if($scope.test123.length>4){
-			console.log('runnin!')
-			$scope.test123 = $scope.test123.slice(0,4);
-		};
-	};
-
 	$scope.register = function(){
 		userFactory.registerUser($scope.newUserInfo, function(returnedData){
 			if(returnedData.data.errors){
 				$scope.listOfErrors = returnedData.data.errors;
 			}
 			else {
-				$cookies.putObject("theUser", returnedData.data);
+				localStorage.setItem("theUser", JSON.stringify(returnedData.data));
 				$cookies.put("currentUserId", returnedData.data._id);
 				$location.url("/dashboard")
 			};
@@ -46,7 +38,7 @@ workoutApp.controller("loginController", ["$scope", "userFactory", "$location", 
 			}
 			else{
 				$cookies.put('currentUserId', returnedData.data._id);
-				$cookies.putObject("theUser", returnedData.data);
+				localStorage.setItem("theUser", JSON.stringify(returnedData.data));
 				$location.url("/dashboard")
 			};
 		});

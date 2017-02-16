@@ -10,10 +10,8 @@ workoutApp.controller("exerciseController", ["$scope", "userFactory", "workoutFa
 	};	
 
 	$scope.logout = function(){
-		//$cookies.remove("todaysWorkout");
-		//$cookies.remove("workoutTimestamp");
 		$cookies.remove("currentUserId");
-		$cookies.remove("theUser");
+		localStorage.removeItem("theUser");
 		$location.url("/");
 	};
 	
