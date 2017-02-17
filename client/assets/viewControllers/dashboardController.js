@@ -64,4 +64,10 @@ workoutApp.controller("dashboardController", ["$scope", "userFactory", "workoutF
 			setCurrentUser();
 		});
 	};	
+
+	//changes the complete boolean of an exercise based on its index position in todaysWorkout, and then saves todaysWorkout to localStorage.
+	$scope.changeComplete = function(index){
+		$scope.todaysWorkout[index].complete = !$scope.todaysWorkout[index].complete;
+		localStorage.setItem("todaysWorkout", JSON.stringify($scope.todaysWorkout));
+	};
 }]);

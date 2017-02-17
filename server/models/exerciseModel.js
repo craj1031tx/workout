@@ -10,6 +10,7 @@ var ExerciseSchema = new mongoose.Schema({
 		bodyRank: {type: Number, required:true},
 		name: {type:String, required:true, index:{unique:true}},
 		uni: {type: Boolean, default: false, required: true},
+		complete: {type:Boolean, default: false},
 		description: {type:String, required:true},
 }, {timestamps:true});
 
