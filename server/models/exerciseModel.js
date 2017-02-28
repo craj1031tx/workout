@@ -1,4 +1,4 @@
-//EXERCISE MODEL
+H//EXERCISE MODEL
 
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
@@ -15,7 +15,7 @@ var ExerciseSchema = new mongoose.Schema({
 }, {timestamps:true});
 
 ExerciseSchema.pre('save', function(next){
-	var bodyNameList = ['Explosive', 'Knee Dominant', 'Hip Dominant', 'Horizontal Push', 'Horizontal Pull', 'Vertical Push', 'Vertical Pull', 'Rotational', 'Core']
+	var bodyNameList = ['Explosive', 'Knee Dominant', 'Hip Dominant', 'Vertical Push', 'Vertical Pull', 'Horizontal Push', 'Horizontal Pull', 'Rotational', 'Core']
 	this.bodyName = bodyNameList[this.bodyRank];
 	next();
 });
